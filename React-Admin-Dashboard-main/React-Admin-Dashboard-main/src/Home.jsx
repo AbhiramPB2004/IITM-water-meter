@@ -1,18 +1,29 @@
 import React from "react";
 import { useEffect, useState } from "react";  
 import io from 'socket.io-client';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import {
   BsFillArchiveFill,
   BsFillGrid3X3GapFill,
   BsPeopleFill,
   BsMoisture,
 } from "react-icons/bs";
+import { FaToggleOn } from "react-icons/fa6";
 import { FaRegSun } from "react-icons/fa";
 import { GiPressureCooker } from "react-icons/gi";
 import { GiWaterfall } from "react-icons/gi";
 import { RiWaterFlashFill } from "react-icons/ri";
 import { FaWaterLadder } from "react-icons/fa6";
 import { FaTemperatureLow } from "react-icons/fa";
+import axios from 'axios';
+
+import Switch from '@mui/material/Switch';
+
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
+
+
 
 import {
   BarChart,
@@ -40,6 +51,36 @@ function Home() {
   const[waterconsumption, setWaterConsumption] = useState(0);
   const[LDR, setLDR] = useState(); 
   const[soilMoisture, setsoilMoisture] = useState(); 
+  const[connectionstatus, setConnectionStatus] = useState(); 
+  const [isToggled, setIsToggled] = useState(false);
+  const [switchstate, setSwitchState] = useState(true);
+
+  const dataOnSwitch = {"switch": "on"};
+  const dataOffSwitch = {"switch": "off"};
+  const changeswitch = () => {
+    console.log("switch changed");
+    if(switchstate == true){
+      
+      axios.post('http://localhost:8000/', dataOnSwitch).then((response) => {
+        console.log(response);
+      }
+      );
+      setSwitchState(false)
+    }
+    else{
+      axios.post('http://localhost:8000/', dataOffSwitch).then((response) => {
+        console.log(response);
+      }
+      );
+      setSwitchState(true)
+    }
+   
+    
+  }
+
+
+
+
   const updateWaterflowchart = (datarecieved) => {
     
     setwaterflowchart(prevFlowchart => [...prevFlowchart, datarecieved]);
@@ -47,7 +88,7 @@ function Home() {
   };
 
   useEffect(() => {
-    const interval = setInterval(updateWaterflowchart, 2000); // Call updateWaterflowchart every 5 seconds
+    const interval = setInterval(updateWaterflowchart,1000); // Call updateWaterflowchart every 5 seconds
     return () => clearInterval(interval); // Clean up the interval when the component unmounts
   }, []);
 
@@ -63,7 +104,13 @@ function Home() {
         });
         
         socketInstance.on('humidity', (data) => {
+          if(data == null){
+            setConnectionStatus("Disconnected")
+            setHumidity(0);
+          }else{
+            setConnectionStatus("Connected")
             setHumidity(data);
+          }
           // console.log(`Received message: ${data}`);
         });
         socketInstance.on('temperature', (data) => {
@@ -161,7 +208,7 @@ function Home() {
   return (
     <main className="main-container">
       <div className="main-title">
-        <h3>DASHBOARD</h3>
+        <h3>DASHBOARD - {connectionstatus}</h3>
       </div>
 
       <div className="main-cards">
@@ -224,7 +271,10 @@ function Home() {
           </div>
           <h1>33</h1>
         </div>
-  
+        <FormGroup>
+          <FormControlLabel control={<Switch onChange={changeswitch} />} label="Solenoid" />
+        </FormGroup>
+        
       </div>
 
       <div className="charts">
@@ -250,6 +300,7 @@ function Home() {
               dataKey="pv"
               stroke="#8884d8"
               activeDot={{ r: 8 }}
+              isAnimationActive={false}
             />
             {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
           </LineChart>
@@ -268,22 +319,26 @@ function Home() {
             }}
           >
             <CartesianGrid strokeDasharray="6 6" />
-            <XAxis dataKey="time"/>
-            <YAxis/>
+            <XAxis dataKey="time" hide />
+            <YAxis hide />
             <Tooltip />
             <Legend />
             <Line
               type="basisOpen"
               dataKey="flowrate"
               stroke="#8884d8"
-              
+              isAnimationActive={false}
+              dot={false}
             />
-            {/* <Line type="basis" dataKey="uv" stroke="#82ca9d" /> */}
           </LineChart>
         </ResponsiveContainer>
-      </div>
-    </main>
-  );
+
+
+        
+            </div>
+          </main>
+
+        );
 }
 
 export default Home;

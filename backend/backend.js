@@ -23,6 +23,7 @@ const socketIo = new Server(server, {
 
 app.post('/receive', (req, res) => {
     const data = req.body;
+    console.log('Received data:', data);    
     // console.log('Received data:', data);
     humidity = data.humidity;
     temperature = data.temperature; 
@@ -70,9 +71,9 @@ socketIo.on('connection', async(socket) => {
         socket.emit('LDR', LDR);
         socket.emit('SoilMoisture', soilMoisture);
 
-        console.log(waterconsumption);
+        // console.log(waterconsumption);
         // socket.emit('current_time', currentTime);
-    }, 1000);
+    }, 500);
 
    
     
