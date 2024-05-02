@@ -34,6 +34,8 @@ while True:
         if ser.in_waiting > 0:
             data = ser.readline().decode().strip()
             data = data.split(",")
+            
+            # Rest of the code...
             # print(data)
             # print(data[0])
             # print(data[1])
@@ -46,7 +48,7 @@ while True:
             # print(data[8])
             # print(data[9])
             # print(data[10])
-            # print(data[11])
+            print(data[11])
             
             url = "http://localhost:3000/receive"
             data = {
@@ -57,7 +59,7 @@ while True:
                 "LDR": data[9],
                 "SoilMoisture": data[11]
             }
-            print(data)
+            # print(data)
             
             # Create a socket object
             

@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@api/climacell-docs": "file:.api/apis/climacell-docs",
+    "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fortawesome/fontawesome-free": "^6.5.2",
     "@material/switch": "^14.0.0",
     "@mui/material": "^5.15.14",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
@@ -18,8 +21,11 @@
     "bootstrap": "^5.3.3",
     "mdb-react-ui-kit": "^7.2.0",
     "react": "^18.2.0",
+    "react-chat-ui": "^0.4.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
+    "react-router-dom": "^6.22.3",
+    "react-typing-animation": "^1.6.2",
     "recharts": "^2.7.2",
     "socket.io-client": "^4.7.5",
     "styled-components": "^6.1.8"

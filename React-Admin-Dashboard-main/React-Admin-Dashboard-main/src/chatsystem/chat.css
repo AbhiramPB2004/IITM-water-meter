@@ -1,0 +1,180 @@
+
+.chat-full{
+	height: 93.5vh;
+	width: 100%;
+	background-color: #313335;
+	display: flex;
+}
+
+.Side-Bar{
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #0d0d0d;
+	height: 100%;
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.new-chat-button{
+	font-size: 15px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.chat-nav{
+	border-top: solid 0.5px rgba(255,255,255,0.5);
+	padding: 10px;
+	margin: 10px;
+}
+
+.history{
+	padding: 10px;
+	margin: 10px;
+	height: 100%;
+}
+
+/* .history li{
+	list-style-type: none;
+	padding: 15px 0;
+	cursor: pointer;
+} */
+.chat-box{
+	height: 93.5vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: center;
+	align-items: center;
+}
+
+.chat-input{
+ 	border: none;
+ 	width: 100%;
+	height: 50px;
+ 	background-color:rgba(15, 14, 14, 0.859);	
+    display: flex;
+    flex-direction: column;
+	color: #fff;
+ 	padding: 0px 15px;
+	border-radius: 5px;
+	box-shadow: rgba(0,0,0,0.05) 0 54px 55px,
+			rgba(0,0,0,0.05) 0 -12px 30px,
+			rgba(0,0,0,0.05) 0 4px 6px,
+			rgba(0,0,0,0.05) 0 12px 3px,
+			rgba(0,0,0,0.05) 0 -3px 5px;
+
+}
+.chat-input:focus{
+	outline: none;
+}
+
+.header-chat{
+	font-size: 40px;
+	color: #fff;
+	width: 100%;
+	
+}
+
+.input-container{
+	position: relative;
+	width: 100%;
+	max-width: 700px;	
+}
+
+.input-section{
+	position: relative;
+	width: 100%;
+	max-width: 1500px;	
+}
+.bottom-section{
+	width: 100%;
+	/* background-color: #3c97bf; */
+	display: flex;
+	padding-bottom: 40px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
+}
+.info{
+	padding: 10px;
+}
+#submit{
+	position: absolute;
+	font-size: 40px;
+	bottom: 13px;
+	right: 10px;
+	cursor: pointer;
+	height: 50px;
+	border-radius: 5px;
+}
+
+.premium-page{
+	font-size: 20px;
+	color: #fff;
+}
+
+/* animated text */
+/* svg {
+  font-family: 'Russo One', sans-serif;
+  width: 50%; height: 10%;
+}
+svg text {
+  text-transform: uppercase;
+  animation: stroke 5s  alternate;
+  stroke-width: 2;
+  stroke: #365fa0;
+  font-size: 140px;
+  fill: rgba(27, 176, 222, 0.797);
+} */
+@keyframes stroke {
+  0%   {
+    fill: rgba(72,138,20,0); stroke: rgba(54,95,160,1);
+    stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
+  }
+  70%  {fill: rgba(72,138,20,0); stroke: rgba(54,95,160,1); }
+  80%  {fill: rgba(72,138,20,0); stroke: rgba(54,95,160,1); stroke-width: 3; }
+  100% {
+    fill: rgba(72,138,204,1); stroke: rgba(54,95,160,0); 
+    stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
+  }
+}
+
+.feed{
+	overflow: scroll;
+	overflow-y: scroll; /* Hide vertical scrollbar */
+  	overflow-x: hidden;
+	width: 98%;
+	padding: 0;
+}
+.feed p{
+	color: rgba(255,255,255,0.8);
+	text-align: left;
+	font-size: 14px;
+	padding-right: 20px;
+}
+.feed p.TypeOfUser{
+	min-width: 100px;
+}
+.feed::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.feed {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.feed li{
+	display: flex;
+	background-color: #444654;
+	width: 100%;
+	padding: 20px;
+	margin: 20px 0px;
+
+}

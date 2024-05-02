@@ -154,6 +154,9 @@ body {
   border-radius: 5px;
 }
 
+.space{
+  padding: 100px;
+}
 .card:first-child {
   background-color: #2962ff;
 }
@@ -182,6 +185,11 @@ body {
 .card:nth-child(8) {
   background-color: #263043;
 }
+
+.card:nth-child(9) {
+  background-color: #2f74f5;
+}
+
 
 .icon-profile{
   width: 21px;

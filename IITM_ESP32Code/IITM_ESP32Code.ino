@@ -14,12 +14,12 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 #define DHTPIN 5
 #define DHTTYPE DHT11
 DHT dht(DHTPIN,DHTTYPE);
-#define relaypin 32
+#define relaypin 33
 
 
 #define SENSOR  2
 int soilmoisture = 13;
-#define Button 15
+#define Button 15 //changed from 15 to 18
 #define LDR 4
 int LDRval;
 long currentMillis = 0;
@@ -107,7 +107,7 @@ if(Serial.available()>0){
  relayMode = Serial.readString();
  
 //  Serial.print(relayMode);
- if(relayMode.startsWith("H")){
+ if(relayMode.startsWith("H") || soilmoisturevalue>1000){
   digitalWrite(relaypin, HIGH);
   // Serial.println("HIGH");
  }else{
@@ -179,8 +179,8 @@ currentMillis = millis();
 }
 
 void messagePrinter(int humidity,int temperature,int flowRate,int totalMilliLitres,int LDRval,int soilmoisturevalue){
-  String s1 = "humidity,"+String(humidity)+","+"temperature"+","+String(temperature)+","+"flowRate"+","+String(flowRate)+","+"total water consumption"+","+String(totalMilliLitres/1000)+","+"LDR"+","+String(LDRval)+","+"soil moisture"+","+String(LDRval);
+  String s1 = "humidity,"+String(humidity)+","+"temperature"+","+String(temperature)+","+"flowRate"+","+String(flowRate)+","+"total water consumption"+","+String(totalMilliLitres/1000)+","+"LDR"+","+String(LDRval)+","+"soil moisture"+","+String(soilmoisturevalue);
   Serial.println(s1);
   // Serial.println(LDRval);
-  delay(1 00);
+  delay(500);
 }

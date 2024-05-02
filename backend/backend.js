@@ -67,7 +67,7 @@ socketIo.on('connection', async(socket) => {
         socket.emit('temperature', temperature);
         const currentTime = new Date().toLocaleTimeString();
         socket.emit('flowrate', {"flowrate": flowrate,"time": currentTime});
-        socket.emit('waterconsumption', waterconsumption);
+        socket.emit('waterconsumption', {"waterconsumption": waterconsumption,"time": currentTime});
         socket.emit('LDR', LDR);
         socket.emit('SoilMoisture', soilMoisture);
 
